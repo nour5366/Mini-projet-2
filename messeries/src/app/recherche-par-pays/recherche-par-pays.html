@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <label>Pays </label>
+    <select class="form-control form-control-lg" id="idPays" name="idPays" 
+            [(ngModel)]="idPays" (change)="onChange()">
+      @for (p of pays; track p.codePays) {
+        <option value="{{p.codePays}}"> {{p.nomPays}} </option>
+      }
+    </select>
+  </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr> 
+            <th>Code</th>
+            <th>Titre</th> 
+            <th>Épisodes</th> 
+            <th>Date Lancement</th>
+            <th>Pays</th>
+          </tr>
+        </thead>
+        @for (serie of series; track serie.codeSerie) {
+          <tbody>
+            <tr>
+              <td>{{serie.codeSerie}}</td>
+              <td>{{serie.titreSerie}}</td>
+              <td>{{serie.nombreEpisodes}}</td>
+              <td>{{serie.dateLancement | date:'dd/MM/yyyy'}}</td>
+              <td>
+                @if(serie.pays){
+                  {{serie.pays.nomPays}}
+                } @else {
+                  PAS DE PAYS
+                }
+              </td>
+              <!--
+              <td><a class="btn btn-danger" (click)="supprimerSerie(serie)">Supprimer</a></td>
+              <td><a class="btn btn-success" [routerLink]="['/updateSerie', serie.codeSerie]">Modifier</a></td> 
+              -->
+            </tr>
+          </tbody>
+        }
+      </table>
+</div>

@@ -1,0 +1,15 @@
+<form>
+  <div class="mb-3" [hidden]="ajout">
+    <label class="form-label">Code Pays</label>
+    <input type="text" [(ngModel)]="pays.codePays" name="codePays" class="form-control w-25">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Nom Pays</label>
+    <input type="text" [(ngModel)]="pays.nomPays" name="nomPays" class="form-control"
+           placeholder="Entrez un nom de pays...">
+  </div>
+  <div class="mt-2 text-right">
+    <button type="submit" [disabled]="!pays.nomPays" class="btn btn-success"
+            (click)="savePays()">{{ajout ? 'Ajouter' : 'Modifier'}}</button>
+  </div>
+</form>

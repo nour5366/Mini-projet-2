@@ -1,0 +1,24 @@
+package com.nour.series;
+
+import java.util.Date;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import com.nour.series.entites.Series;
+import com.nour.series.repos.SeriesRepository;
+
+@SpringBootTest
+class SeriesApplicationTests {
+
+    @Autowired
+    private SeriesRepository serieRepository;
+
+    @Test
+    public void testCreateSerie() {
+
+        Series serie = new Series( "Breaking Code", 24L,new Date() );
+
+        serieRepository.save(serie);
+    }
+}

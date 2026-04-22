@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<head>
+    <meta charset="utf-8">
+    <title th:text="${mode == 'new' ? 'Ajout des Séries' : 'Modification des Séries'}"></title>
+</head>
+
+<body>
+    <div th:replace="~{template}"></div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header" th:text="${mode == 'new' ? 'Ajout des Séries' : 'Modifier des Séries'}"> </div>
+            <div class="card-body">
+                <form th:action="@{/saveSerie}" method="post">
+
+                    <div class="form-group" th:if="${mode == 'edit'}">
+                        <label class="control-label" hidden>ID Série :</label>
+                        <input type="hidden" name="codeSerie" class="form-control" th:value="${series.codeSerie}" />
+                    </div>
+
+                    <input type="hidden" name="page" class="form-control" th:value="${page}" />
+                    <input type="hidden" name="size" class="form-control" th:value="${size}" />
+
+                    <div class="form-group">
+                        <label class="control-label">Titre Série :</label>
+                        <input type="text" name="titreSerie" class="form-control" th:value="${series.titreSerie}" />
+                        <span th:errors="${series.titreSerie}" class="text-danger"> </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Nombre Épisodes :</label>
+                        <input type="text" name="nombreEpisodes" class="form-control"
+                            th:value="${series.nombreEpisodes}" />
+                        <span th:errors="${series.nombreEpisodes}" class="text-danger"> </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Date Lancement :</label>
+                        <input type="date" name="dateLancement" class="form-control"
+                            th:value="${series.dateLancement != null ? #dates.format(series.dateLancement, 'yyyy-MM-dd') : ''}" />
+                        <span th:errors="${series.dateLancement}" class="text-danger"> </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Pays :</label>
+
+                        <select name="pays" class="form-control" th:value="${series.pays?.codePays}"
+                            th:if="${series.pays != null}">
+                            <option th:each="p:${pays}" th:if="${mode=='edit'}" th:value="${p.codePays}"
+                                th:text="${p.nomPays}" th:selected="${ p.codePays==series.pays.codePays}">
+                            </option>
+                        </select>
+
+                   
+                        <select name="pays" class="form-control" th:if="${series.pays == null}">
+                            <option th:each="p:${pays}" th:value="${p.codePays}" th:text="${p.nomPays}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary">Valider</button>
+                    </div>
+                </form>
+                <div th:if="${msg}" class="alert alert-success mt-2" th:text="${msg}"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <app-update-pays [pays]="updatedPays" [ajout]="ajout" (paysUpdated)="paysUpdated($event)"></app-update-pays>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <h5 class="card-title"><strong>Liste des Pays</strong></h5>
+      <table class="table table-striped">
+        <thead>
+          <tr> 
+            <th>Code</th>
+            <th>Nom Pays</th> 
+            <th>Actions</th>
+          </tr>
+        </thead>
+        @for(p of pays; track p.codePays) {
+          <tbody>
+            <tr>
+              <td>{{p.codePays}}</td>
+              <td>{{p.nomPays}}</td>
+              <td><a class="btn btn-success" (click)="updatePays(p)">Editer</a></td>
+            </tr>
+          </tbody>
+        }
+      </table>
+    </div>
+  </div>
+</div>

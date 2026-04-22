@@ -1,0 +1,5 @@
+package com.nour.series.service;
+
+public interface SeriesService {
+
+}

@@ -1,39 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css"href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
 <head>
     <meta charset="utf-8">
     <title>Liste des Séries</title>
 </head>
 
 <body>
-<div class="container mt-5">
-<div class="card">
- <div class="card-header">
+    <div th:replace="~{template}"></div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
                 Liste des Séries
             </div>
             <div class="card-body">
                 <table class="table table-striped">
 
-                        <tr>
-                            <th>Code</th>
-                            <th>Titre Série</th>
-                            <th>Nombre Épisodes</th>
-                            <th>Action</th>
-                        </tr>ium
-                  
+                    <tr>
+                        <th>Code</th>
+                        <th>Titre Série</th>
+                        <th>Nombre Épisodes</th>
+                        <th>Date</th>
+                        <th>Pays</th>
+                        <th sec:authorize="hasAuthority('ADMIN')">Action</th>
+                        <th sec:authorize="hasAuthority('ADMIN')">Modifier</th>
+                    </tr>
+
                     <tbody>
                         <tr th:each="s:${series.content}">
                             <td th:text="${s.codeSerie}"></td>
                             <td th:text="${s.titreSerie}"></td>
                             <td th:text="${s.nombreEpisodes}"></td>
-                            <td>
+                            <td th:text="${#calendars.format(s.dateLancement, 'dd-MM-yyyy')}"></td>
+                            <td th:if="${s.pays != null}" th:text="${s.pays.nomPays}"></td>
+                            <td th:if="${s.pays == null}" th:text="${'Pas de Pays'}"></td>
+                            <td sec:authorize="hasAuthority('ADMIN')">
                                 <a class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')"
                                     th:href="@{supprimerSerie(id=${s.codeSerie}, page=${currentPage}, size=${size})}">
                                     Supprimer
                                 </a>
                             </td>
-                            
+                            <td sec:authorize="hasAuthority('ADMIN')">
+                                <a class="btn btn-success"
+                                    th:href="@{modifierSerie(id=${s.codeSerie},page=${currentPage},size=${size})}">Editer</a>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>

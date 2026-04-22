@@ -1,0 +1,41 @@
+<div class="container">
+  <div>
+    <h2>Ajouter une Série :</h2>
+  </div>
+  <form>
+    <div class="row">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Titre Série</label>
+        <input type="text" [(ngModel)]="newSerie.titreSerie" name="titreSerie" class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>Nombre épisodes</label>
+        <input type="number" [(ngModel)]="newSerie.nombreEpisodes" name="nombreEpisodes" class="form-control">
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Date Lancement</label>
+        <input type="date" [(ngModel)]="newSerie.dateLancement" name="dateLancement" class="form-control">
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Pays</label>
+        <select class="form-control" id="idPays" name="idPays" [(ngModel)]="newIdPays">
+          @for (p of pays; track p.codePays) {
+          <option [value]="p.codePays">
+            {{p.nomPays}}
+          </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <button type="button" (click)="ajouterSerie()" class="btn btn-success">Ajouter</button>
+    </div>
+  </form>
+</div>

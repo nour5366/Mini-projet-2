@@ -1,17 +1,18 @@
 package com.nour.series.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
 import com.nour.series.entites.Series;
 import com.nour.series.service.SeriesService;
+
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class SeriesController {
@@ -19,12 +20,16 @@ public class SeriesController {
 	@Autowired
 	private SeriesService serieService;
 
+	@GetMapping(value = "/")
+	public String welcome() {
+		return "index";
+	}
+
 	@RequestMapping("/myView")
 	public String myView() {
 		return "myView";
 	}
 
-	// Liste des séries avec pagination
 	@RequestMapping("/ListeSeries")
 	public String listeSeries(ModelMap modelMap,
 			@RequestParam(name = "page", defaultValue = "0") int page,
@@ -34,31 +39,45 @@ public class SeriesController {
 		modelMap.addAttribute("pages", new int[series.getTotalPages()]);
 		modelMap.addAttribute("currentPage", page);
 		modelMap.addAttribute("size", size);
-		return "listeSeries"; // fichier listeSeries.html
+		return "listeSeries";
 	}
 
-	// Afficher formulaire création
 	@RequestMapping("/showCreate")
-	public String showCreate() {
-		return "createSerie"; // fichier createSerie.html
+	public String showCreate(ModelMap modelMap) {
+		modelMap.addAttribute("series", new Series());
+		modelMap.addAttribute("mode", "new");
+		modelMap.addAttribute("pays", serieService.getAllPays());
+		return "formSerie";
 	}
 
-	// Sauvegarder une nouvelle série
 	@RequestMapping("/saveSerie")
-	public String saveSerie(@ModelAttribute("serie") Series serie, @RequestParam("date") String date, ModelMap modelMap)
-			throws ParseException {
+	public String saveSerie(@Valid @ModelAttribute("series") Series series, BindingResult bindingResult,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "2") int size,
+			ModelMap modelMap) {
+		int currentPage;
+		boolean isNew = false;
 
-		// Conversion de la date
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateLancement = dateformat.parse(date);
-		serie.setDateLancement(dateLancement);
-		Series savedSerie = serieService.saveSeries(serie);
-		String msg = "Serie enregistrée avec Id " + savedSerie.getCodeSerie();
-		modelMap.addAttribute("msg", msg);
-		return "createSerie";
+		if (bindingResult.hasErrors()) {
+			modelMap.addAttribute("pays", serieService.getAllPays());
+			return "formSerie";
+		}
+
+		if (series.getCodeSerie() == null) 
+			isNew = true;
+
+		serieService.saveSeries(series);
+
+		if (isNew) 
+		{
+			Page<Series> prods = serieService.getAllSeriesParPage(page, size);
+			currentPage = prods.getTotalPages() - 1;
+		} else 
+			currentPage = page;
+
+		return ("redirect:/ListeSeries?page=" + currentPage + "&size=" + size);
 	}
 
-	// Supprimer une série
 	@RequestMapping("/supprimerSerie")
 	public String supprimerSerie(@RequestParam("id") Long id,
 			@RequestParam(name = "page", defaultValue = "0") int page,
@@ -73,32 +92,17 @@ public class SeriesController {
 		return "listeSeries";
 	}
 
-	// Modifier une série
 	@RequestMapping("/modifierSerie")
-	public String editerSerie(@RequestParam("id") Long id, ModelMap modelMap) {
-		Series s = serieService.getSeries(id);
-		modelMap.addAttribute("serie", s);
-		return "editerSerie"; // fichier editerSerie.html
-	}
-
-	// Mettre à jour une série
-	@RequestMapping("/updateSerie")
-	public String updateSerie(@ModelAttribute("serie") Series serie, @RequestParam("date") String date,
+	public String editerSerie(@RequestParam("id") Long id,
 			@RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "size", defaultValue = "2") int size,
-			ModelMap modelMap) throws ParseException {
-
-		// Conversion de la date
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateLancement = dateformat.parse(date);
-		serie.setDateLancement(dateLancement);
-
-		serieService.updateSeries(serie);
-		Page<Series> series = serieService.getAllSeriesParPage(page, size);
-		modelMap.addAttribute("series", series);
-		modelMap.addAttribute("pages", new int[series.getTotalPages()]);
-		modelMap.addAttribute("currentPage", page);
+			ModelMap modelMap) {
+		Series s = serieService.getSeries(id);
+		modelMap.addAttribute("series", s);
+		modelMap.addAttribute("mode", "edit");
+		modelMap.addAttribute("pays", serieService.getAllPays());
+		modelMap.addAttribute("page", page);
 		modelMap.addAttribute("size", size);
-		return "listeSeries";
+		return "formSerie";
 	}
 }

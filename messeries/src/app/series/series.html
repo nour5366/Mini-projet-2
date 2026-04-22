@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-body">
+      <h5 class="card-title"><strong>Liste des Séries</strong></h5>
+      <table class="table table-hover">
+        <thead>
+          <tr> 
+            <th>N°</th>
+            <th>Code</th>
+            <th>Titre</th> 
+            <th>Nombre d'Épisodes</th> 
+            <th>Date Lancement</th> 
+            <th>Pays</th>
+            @if(authService.isAdmin()) {
+              <th>Actions</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (serie of series; track serie.codeSerie; let index = $index; let nbr = $count; let first = $first) {
+          <!-- @if (first) {
+            <tr>
+              <td colspan="7">
+                <h1>Nombre : {{nbr}}</h1>
+              </td>
+            </tr>
+          }-->
+          <tr>
+            <td>{{index + 1}}</td>
+            <td>{{serie.codeSerie}}</td>
+            <td>{{serie.titreSerie}}</td>
+            <td>{{serie.nombreEpisodes}}</td>
+            <td>{{serie.dateLancement | date:'dd/MM/yyyy'}}</td>
+            <td>
+              @if (serie.pays) {
+                {{serie.pays.nomPays}}
+              }
+            </td>
+            @if (authService.isAdmin()) {
+              <td>
+              
+
+              <a class="btn btn-success btn-sm me-2" [routerLink]="['/updateSerie', serie.codeSerie]">Modifier</a>
+              <a class="btn btn-danger btn-sm me" (click)="supprimerSerie(serie)">Supprimer</a>
+    
+              </td>
+            }
+          </tr>
+          } @empty {
+            <tr>
+              <td colspan="7" class="text-center">
+                <h1>Aucune série trouvée !</h1>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

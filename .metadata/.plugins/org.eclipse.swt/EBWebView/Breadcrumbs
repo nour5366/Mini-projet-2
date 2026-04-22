@@ -1,0 +1,53 @@
+3:24:38 Microsoft.UnloadController.TabStripEmpty
+3:24:38 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+3:24:38 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+3:24:38 Microsoft.Shutdown.OnWindowClosing
+3:24:38 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+3:24:38 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+3:24:38 Microsoft.Shutdown.OnWindowClosing_MaybeClearBrowsingDataOnExit
+3:24:38 Microsoft.Shutdown.OnWindowClosing_ClearBrowsingDataOnExitNotInProgress
+3:24:38 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
+3:24:38 Widget Closed: BrowserWidget
+3:24:40 Microsoft.Shutdown.OnWindowClosing
+3:24:40 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
+3:24:40 Microsoft.Browser_Removed
+3:24:43 Microsoft.Shutdown.TabStripModel.SendDetachWebContentsNotifications
+3:24:43 Browser3 Close Tab3 at 0
+3:24:43 Tab3 WebContentsDestroyed
+3:24:44 Microsoft.UnloadController.TabStripEmpty
+3:24:44 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+3:24:44 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+3:24:44 Microsoft.Shutdown.OnWindowClosing
+3:24:44 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+3:24:44 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+3:24:44 Microsoft.Shutdown.OnWindowClosing_MaybeClearBrowsingDataOnExit
+3:24:44 Microsoft.Shutdown.OnWindowClosing_ClearBrowsingDataOnExitNotInProgress
+3:24:44 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
+3:24:44 Widget Closed: BrowserWidget
+3:24:44 Microsoft.Shutdown.OnWindowClosing
+3:24:44 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
+3:24:44 Microsoft.Browser_Removed
+3:24:46 Microsoft.Shutdown.TabStripModel.SendDetachWebContentsNotifications
+3:24:46 Browser1 Close Tab1 at 0
+3:24:47 Tab1 WebContentsDestroyed
+3:24:47 Microsoft.UnloadController.TabStripEmpty
+3:24:47 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+3:24:47 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+3:24:47 Microsoft.Shutdown.OnWindowClosing
+3:24:47 Microsoft.UnloadController.IsUnclosableApp_IsNotWebApp
+3:24:47 Microsoft.UnloadController.HasCompletedUnloadProcessing_True
+3:24:47 Microsoft.Shutdown.OnWindowClosing_MaybeClearBrowsingDataOnExit
+3:24:47 Microsoft.Shutdown.OnWindowClosing_ClearBrowsingDataOnExitNotInProgress
+3:24:47 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
+3:24:47 Widget Closed: BrowserWidget
+3:24:47 Microsoft.Shutdown.OnWindowClosing
+3:24:47 Microsoft.Shutdown.OnWindowClosing_DeleteScheduled
+3:24:47 Microsoft.Last_Browser_Removed
+3:24:47 Microsoft.Shutdown.ShutdownIfNoBrowsers
+3:24:47 Microsoft.Shutdown.SetTryingToQuit_Quitting
+3:24:47 Microsoft.Shutdown.NotifyAppTerminating
+3:24:47 Microsoft.Shutdown.OnAppExiting
+3:24:47 Microsoft.Shutdown.HandleAppExitingForPlatform_Aura
+3:24:47 Microsoft.Shutdown.HandleAppExitingForPlatform_Aura.NotificationUIManager_StartShutdown
+3:24:47 Microsoft.Shutdown.HandleAppExitingForPlatform_Aura.CloseAllSecondaryWidgets
+3:24:54 Shutdown

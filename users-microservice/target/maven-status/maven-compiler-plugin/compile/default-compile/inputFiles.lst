@@ -1,0 +1,14 @@
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\entities\Role.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\entities\User.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\repos\RoleRepository.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\repos\UserRepository.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\restControllers\UserRestController.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\security\JWTAuthenticationFilter.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\security\JWTAuthorizationFilter.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\security\MyUserDetailsService.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\security\SecParams.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\security\SecurityBeansConfiguration.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\security\SecurityConfig.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\service\UserService.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\service\UserServiceImpl.java
+C:\gestion des Series\users-microservice\src\main\java\com\nour\users\UsersMicroserviceApplication.java

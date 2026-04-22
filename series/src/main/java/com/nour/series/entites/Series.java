@@ -5,7 +5,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import org.springframework.format.annotation.DateTimeFormat;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Series {
 
@@ -13,60 +26,18 @@ public class Series {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeSerie;
 
+    @NotNull
+    @Size(min = 4, max = 25)
     private String titreSerie;
 
+    @Min(value = 10)
+    @Max(value = 10000)
     private Long nombreEpisodes;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent
     private Date dateLancement;
 
-    public Series() {
-        super();
-    }
-
-    public Series(String titreSerie, Long nombreEpisodes, Date dateLancement) {
-        super();
-        this.titreSerie = titreSerie;
-        this.nombreEpisodes = nombreEpisodes;
-        this.dateLancement = dateLancement;
-    }
-
-    public Long getCodeSerie() {
-        return codeSerie;
-    }
-
-    public void setCodeSerie(Long codeSerie) {
-        this.codeSerie = codeSerie;
-    }
-
-    public String getTitreSerie() {
-        return titreSerie;
-    }
-
-    public void setTitreSerie(String titreSerie) {
-        this.titreSerie = titreSerie;
-    }
-
-    public Long getNombreEpisodes() {
-        return nombreEpisodes;
-    }
-
-    public void setNombreEpisodes(Long nombreEpisodes) {
-        this.nombreEpisodes = nombreEpisodes;
-    }
-
-    public Date getDateLancement() {
-        return dateLancement;
-    }
-
-    public void setDateLancement(Date dateLancement) {
-        this.dateLancement = dateLancement;
-    }
-
-    @Override
-    public String toString() {
-        return "Serie [codeSerie=" + codeSerie +
-                ", titreSerie=" + titreSerie +
-                ", nombreEpisodes=" + nombreEpisodes +
-                ", dateLancement=" + dateLancement + "]";
-    }
+    @ManyToOne
+    private Pays pays;
 }

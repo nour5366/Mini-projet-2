@@ -1,0 +1,15 @@
+com\nour\users\security\SecurityConfig$1.class
+com\nour\users\security\JWTAuthorizationFilter.class
+com\nour\users\repos\UserRepository.class
+com\nour\users\entities\Role.class
+com\nour\users\security\SecParams.class
+com\nour\users\security\MyUserDetailsService.class
+com\nour\users\security\SecurityBeansConfiguration.class
+com\nour\users\security\JWTAuthenticationFilter.class
+com\nour\users\service\UserServiceImpl.class
+com\nour\users\restControllers\UserRestController.class
+com\nour\users\repos\RoleRepository.class
+com\nour\users\UsersMicroserviceApplication.class
+com\nour\users\entities\User.class
+com\nour\users\security\SecurityConfig.class
+com\nour\users\service\UserService.class

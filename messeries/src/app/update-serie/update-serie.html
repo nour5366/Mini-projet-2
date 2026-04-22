@@ -1,0 +1,64 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-body">
+
+      <h5 class="card-title mb-4">
+        <strong>Modifier une série</strong>
+      </h5>
+
+      <form>
+
+        <!-- ID hidden -->
+        <input type="hidden" [(ngModel)]="currentSerie.codeSerie" name="codeSerie">
+
+        <!-- Titre -->
+        <div class="mb-3">
+          <label class="form-label">Titre de la série</label>
+          <input type="text"
+                 [(ngModel)]="currentSerie.titreSerie"
+                 name="titreSerie"
+                 class="form-control">
+        </div>
+
+        <!-- Nombre d'épisodes -->
+        <div class="mb-3">
+          <label class="form-label">Nombre d'épisodes</label>
+          <input type="number"
+                 [(ngModel)]="currentSerie.nombreEpisodes"
+                 name="nombreEpisodes"
+                 class="form-control">
+        </div>
+
+        <!-- Date -->
+        <div class="mb-3">
+          <label class="form-label">Date de lancement</label>
+          <input type="date"
+                 [ngModel]="currentSerie.dateLancement | date:'yyyy-MM-dd'"
+                 (ngModelChange)="currentSerie.dateLancement = $event"
+                 name="dateLancement"
+                 class="form-control">
+        </div>
+
+        <!-- Pays -->
+        <div class="mb-3">
+          <label class="form-label">Pays</label>
+          <select class="form-select"
+                  name="idPays"
+                  [(ngModel)]="updatedIdPays">
+
+            @for (p of pays; track p.codePays) {
+              <option [value]="p.codePays">
+                {{ p.nomPays }}
+              </option>
+            }
+
+          </select>
+        </div>
+        <div class="mt-2"> <button type="submit" (click)="updateSerie()" class="btn btn-success">Modifier</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
